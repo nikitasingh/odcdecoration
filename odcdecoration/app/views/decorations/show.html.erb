@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @decoration.name %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @decoration.year %>
+</p>
+
+<p>
+  <b>Zone:</b>
+  <%= @decoration.zone_id %>
+</p>
+
+<p>
+  <b>Expense:</b>
+ <%=  link_to "Download", @decoration.expense.url(:original, false) %>
+
+
+</p>
+
+<% @decoration.tasks.each do |t| %>
+
+  <p>
+    <b>Task Name:</b>
+    <%= t.name %>
+  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+    <b>Assigned to users:</b>
+    <% t.users.each do |user| %>
+      
+      <%=user.username%>
+    <%end%>
+  </p>
+<% end %>
+ <br/>
+ <h2>Add tasks and users</h2>
+<%= form_for([@decoration, @decoration.tasks.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+
+  </div>
+
+Select Users:
+  <br/><%= select_tag("user_ids", options_for_select(User.all.collect{|u|[u.username,u.id]}),{:multiple=> true}) %>
+  <br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_decoration_path(@decoration) %> |
+<%= link_to 'Back', decorations_path %>

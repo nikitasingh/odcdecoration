@@ -1,0 +1,33 @@
+<h1>Listing decorations</h1>
+
+
+<%= select_tag("years", options_for_select(Decoration.select("DISTINCT(YEAR)").collect{|u|[u.year]}),:prompt => "All",:onchange=>"showDecoration(this.value, '#{home_decorations_path}');") %>
+
+
+<%= link_to 'Manage Decoration', decorations_path %>
+<%= link_to 'Manage zones', zones_path %>
+
+
+<div id='home_list'>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Year</th>
+    <th>Zone</th>
+   
+  </tr>
+
+<% @decorations.each do |decoration| %>
+  <tr>
+    <td><%= decoration.name %></td>
+    <td><%= decoration.year %></td>
+    <td><%= decoration.zone_id %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+</div>

@@ -1,0 +1,35 @@
+<%= form_for(@decoration) do |f| %>
+  <% if @decoration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@decoration.errors.count, "error") %> prohibited this decoration from being saved:</h2>
+
+      <ul>
+      <% @decoration.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "Theme name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+<br>
+    <% @zone=Zone.all %>
+    <%= f.label :zone_id %><br />
+    <%= f.collection_select :zone_id ,@zone,:id,:name %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :expense %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

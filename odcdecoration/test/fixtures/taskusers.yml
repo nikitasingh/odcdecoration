@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tasks_id: 1
+  users_id: 1
+
+two:
+  tasks_id: 1
+  users_id: 1
