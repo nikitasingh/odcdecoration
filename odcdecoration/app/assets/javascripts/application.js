@@ -13,14 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-function showDecoration(str, path)
+function showDecoration(str)
 {
-  alert("hi");
-
+data = "year=" + str;
 
   $.ajax({
-        url: path + '?year=' + str,
+        url: 'decorations/fetch_data',
         type: 'get',
-        contentType: 'application/json; charset=UTF-8',
+        data: { year: str},
+        contentType: 'application/json; charset=UTF-8',       
+        success: function(data){
+    	  $('#year_list').html(data);
+        },
+
      });
 }

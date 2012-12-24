@@ -1,28 +1,40 @@
 class DecorationsController < ApplicationController
   # GET /decorations
   # GET /decorations.json
-  @decorations = Decoration.all
-  def hello
-  #### your code goes here #####
-  respond_to do |format|
-    format.js { render :layout=>false }
-  end
-end
+
+  
+
 
     def home
 if params[:year]
-  @decorations=Decoration.where(:year=>"2012")
+  puts "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+  @decorations=Decoration.where(:year=> params[:year])
+
 else
-  @decorations=Decoration.all
-end  
-  respond_to do |format|
-    format.html
-    format.js { render :layout=>false }
-  end
+  @decorations= Decoration.all
 end
+   respond_to do |format|
+    format.html 
+     format.js { render :layout=>false }
+   end
+end  
  
+  def fetch_data
+     
+if (params[:year]=="")
+ 
+      @decorations=Decoration.all
+     render :layout => false
+   else
+
+@decorations=Decoration.where(:year=> params[:year])
+     render :layout => false
+   end
+  end  
+
   def index
-    @decorations = Decoration.all
+   
+  @decorations= Decoration.page( params[:page]).per(1).order("id asc")
 
     respond_to do |format|
       format.html # index.html.erb

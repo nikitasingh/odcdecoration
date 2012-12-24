@@ -1,25 +1,22 @@
 Odcdecoration::Application.routes.draw do
   resources :taskusers
 
-  devise_for :users
-
+devise_for :users, :path_prefix => 'my'
+resources :users
   resources :zones
 
   resources :tasks 
-
+   
     resources :tasks_users 
      resources :taskusers 
   resources :decorations do
+    collection do
+      get :home
+      get 'fetch_data'
+    end
     resources :tasks 
 end
 
-
-resources :decorations do
-  member do
-    get :home
-  end
-end
-get 'decorations/home'
 
 
 #match 'decorations/home' => 'decorations#home'
@@ -31,7 +28,7 @@ get 'decorations/home'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+    # match 'decorations/home' => 'decoration#home', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):

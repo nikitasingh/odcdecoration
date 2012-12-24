@@ -1,0 +1,18 @@
+<div id="year_list">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Year</th>
+    <th>Zone</th>
+   
+  </tr>
+
+<% @decorations.each do |dec| %>
+  <tr>
+    <td><%= dec.name %></td>
+    <td><%= dec.year %></td>
+    <td><%= dec.zone_id %></td>
+    
+  </tr>
+<% end %>
+</table>

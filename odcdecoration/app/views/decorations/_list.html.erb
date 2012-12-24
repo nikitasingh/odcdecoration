@@ -1,4 +1,8 @@
-<div id='deco_list'>
+
+<h2>json list</h2>
+
+
+
 <table>
   <tr>
     <th>Name</th>
@@ -6,7 +10,7 @@
     <th>Zone</th>
    
   </tr>
-
+<% logger.debug("==============#{@decorations.inspect}") %>
 <% @decorations.each do |decoration| %>
   <tr>
     <td><%= decoration.name %></td>
@@ -20,4 +24,3 @@
 <br />
 
 
-</div>

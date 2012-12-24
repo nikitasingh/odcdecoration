@@ -1,18 +1,17 @@
 
-
-
-
-
-
-
-
+<div class="menu">
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
 <%= link_to 'Manage Decoration', decorations_path %>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 <%= link_to 'Manage zones', zones_path %>
+</div>
+
 
  <div class="actions">
 
   </div>
   <h1>Listing decorations</h1>
+  <%= paginate @decorations %> 
 <table>
   <tr>
     <th>Name</th>
@@ -21,13 +20,16 @@
     <th></th>
     <th></th>
     <th></th>
+      <th></th>
   </tr>
 
 <% @decorations.each do |decoration| %>
+<% @zone=Zone.find(decoration.zone_id) %>
+
   <tr>
     <td><%= decoration.name %></td>
     <td><%= decoration.year %></td>
-    <td><%= decoration.zone_id %></td>
+    <td><%= @zone.name %></td>
     <td><%= link_to 'Assign tasks', decoration %></td>
     <td><%= link_to 'Show', decoration %></td>
     <td><%= link_to 'Edit', edit_decoration_path(decoration) %></td>
