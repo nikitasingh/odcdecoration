@@ -43,8 +43,9 @@
   <tr>
     <td>   <%= t.name %></td>
     <td>   <% t.users.each do |user| %> <%=user.username%> <% end %></td>
-        <td><%= link_to 'Edit', edit_task_path(@decoration.tasks) %></td>
-    <td></td>
+     <td><%= link_to 'Edit', edit_task_path(t) %></td>
+    <td><%= link_to 'Destroy', @task, confirm: 'Are you sure?', method: :delete %></td>
+     
 
 <% end %>
   </tr>

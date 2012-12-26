@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220135514) do
+ActiveRecord::Schema.define(:version => 20121226133026) do
 
   create_table "decorations", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20121220135514) do
     t.string   "expense_content_type"
     t.integer  "expense_file_size"
     t.datetime "expense_updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "tasks", :force => true do |t|

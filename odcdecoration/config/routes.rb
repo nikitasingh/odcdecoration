@@ -1,4 +1,6 @@
 Odcdecoration::Application.routes.draw do
+  resources :roles
+
   resources :taskusers
 
 devise_for :users, :path_prefix => 'my'
