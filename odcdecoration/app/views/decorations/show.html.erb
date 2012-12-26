@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Theme:</b>
   <%= @decoration.name %>
 </p>
 
@@ -17,8 +17,18 @@
 
 <p>
   <b>Expense:</b>
- <%=  link_to "Download", @decoration.expense.url(:original, false) %>
+<% if (@decoration.expense !="/expenses/original/missing.png") %>
+ No attachment
+
+ <% else %>
+ has attchmnt
+ <%#=  link_to "Download", @decoration.expense.url(:original, false) %>
+
+ <% end %>
 </p>
+
+
+  <%= paginate @tasks %> 
 <table>
   <tr>
     <th>Task Name</th>
@@ -27,9 +37,9 @@
     <th></th>
     <th></th>
   </tr>
- 
-<% @decoration.tasks.each do |t| %>
- 
+
+<% @tasks.each do |t| %>
+
   <tr>
     <td>   <%= t.name %></td>
     <td>   <% t.users.each do |user| %> <%=user.username%> <% end %></td>
@@ -40,16 +50,17 @@
   </tr>
 </table>
  <br/>
- <h2>Add tasks and users</h2>
+ <h3>Add tasks and users</h3>
 
 <%= form_for([@decoration, @decoration.tasks.build]) do |f| %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <br />
 Select Users:
   <br/><%= select_tag("user_ids", options_for_select(User.all.collect{|u|[u.username,u.id]}),{:multiple=> true}) %>
-  <br/>
+  <br/><br/>
   <div class="actions">
     <%= f.submit %>
   </div>

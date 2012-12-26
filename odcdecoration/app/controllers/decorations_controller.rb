@@ -34,7 +34,7 @@ if (params[:year]=="")
 
   def index
    
-  @decorations= Decoration.page( params[:page]).per(1).order("id asc")
+  @decorations= Decoration.page( params[:page]).per(5).order("id asc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +46,13 @@ if (params[:year]=="")
   # GET /decorations/1.json
   def show
     @decoration = Decoration.find(params[:id])
+#@tasks=@decoration.tasks
+#p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+#p @tasks
+#p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
 
+
+ @tasks=@decoration.tasks.page(params[:page]).per(3)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @decoration }

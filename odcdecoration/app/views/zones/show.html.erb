@@ -6,17 +6,7 @@
 
 
 </p>
-<% @tasks_users=Tasks_user.all %>
-<% @tasks_users.each do |tasks_user| %>
-<p>
-  <b>Name:</b>
-  <%= @tasks_user.task_id %>
-</p>
-<p>
-  <b>ID:</b>
-  <%= @tasks_user.user_id %>
-</p>
-<% end %>
+
 
 <%= link_to 'Edit', edit_zone_path(@zone) %> |
 <%= link_to 'Back', zones_path %>

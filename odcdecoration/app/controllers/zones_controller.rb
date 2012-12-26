@@ -3,8 +3,8 @@ class ZonesController < ApplicationController
   # GET /zones.json
 
   def index
-    @zones = Zone.all
-
+  
+  @zones= Zone.page( params[:page]).per(5).order("id asc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @zones }

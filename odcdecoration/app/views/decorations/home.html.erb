@@ -1,11 +1,7 @@
 
-
+<br/>
  <div class="menu"> Select year:<%= select_tag("years", options_for_select(Decoration.select("DISTINCT(YEAR)").collect{|u|[u.year]}),:prompt => "All",:onchange=>"showDecoration(this.value);") %>
 
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-<%= link_to 'Manage Decoration', decorations_path %>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<%= link_to 'Manage zones', zones_path %>
 
 </div>
 <center>

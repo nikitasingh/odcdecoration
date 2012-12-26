@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+       @decoration = Decoration.find(params[:id])
+    @tasks= Task.page( params[:page]).per(5).order("id asc")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +14,7 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+        @decoration = Decoration.find(params[:id])
     @task = Task.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
+    
     @task = Task.new
 @tasks_user=Tasks_user.new
     respond_to do |format|
@@ -43,22 +46,33 @@ class TasksController < ApplicationController
   def create
   
   @decoration = Decoration.find(params[:decoration_id])
-  @task = @decoration.tasks.create(params[:task])
-  @task.users = User.find(params[:user_ids])
-  @task.save
+ 
+ 
 
   #@tasks_user=Tasks_user.new(:user_id=>3,:task_id=>3)
 #@tasks_user.save
+#p 'newwwwwwwwwwwwwwwwww task params'
+#p params[:name]
+#p params[:task][:name]
+#p params[:task_id]
 
  respond_to do |format|
-      if @task.save 
-        format.html { redirect_to @decoration, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
+      if (params[:user_ids]!=nil) && (params[:task][:name]!="")
+ #       p '!!!!!!!!!!!!!!!!! user id !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+  #      p params[:name]
+         @task = @decoration.tasks.create(params[:task])
+         @task.users = User.find(params[:user_ids])
+  @task.save
+        format.html { redirect_to @decoration, notice: 'Task created and assigned.' }
+ format.json { render json: @task, status: :created, location: @task }
       else
-        format.html { redirect_to @decoration, notice: 'Add task name' }
+   #         p '!!!!!!!!!!!!!!!!!!!!!!no id !!!!!!!!!!!!!!!!!!!!!!!!!!'
+   format.html { redirect_to @decoration, notice: 'Add task name and assign it to a user' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+      
       end
     end
+ 
   
 
 

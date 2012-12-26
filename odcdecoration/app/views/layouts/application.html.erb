@@ -8,13 +8,21 @@
   <%= csrf_meta_tags %>
 </head>
 <div class="header"><h2><%= image_tag("flower.png", :size => "60x60",:alt => "odc decoration") %> ODC Decoration Management </h2><div class="signout" align="right" style="color:#ffffff"><% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
+   <h6> Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
+  </h6><% else %>
     
   <% end %></div></div>
+<% if user_signed_in? %>
+<div class="menu">
 
-
+<%= link_to 'Manage Decoration', decorations_path %>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<%= link_to 'Manage zones', zones_path %>
+</div>
+  <% else %>
+    
+  <% end %>
 <body>
 
 <%= yield %>
