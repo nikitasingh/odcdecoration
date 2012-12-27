@@ -16,11 +16,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :decoration_id %><br />
-    <%= f.number_field :decoration_id %>
+    <% f.label :decoration_id %><br />
+    <% f.number_field :decoration_id %>
   </div>
+
+   <% @task.users.each do |user| %> <%=user.username%> <% end %> <br/>
+<%= select_tag "user_ids",options_for_select(User.all.collect{|u|[u.username,u.id]},@task.users.map{ |j| j.id }),:multiple => true%>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
-  
-<% end %>
+
+  <% end %>

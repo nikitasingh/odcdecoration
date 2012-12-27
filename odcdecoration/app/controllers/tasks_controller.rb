@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-       @decoration = Decoration.find(params[:id])
+   
     @tasks= Task.page( params[:page]).per(5).order("id asc")
 
     respond_to do |format|
@@ -14,7 +14,6 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-        @decoration = Decoration.find(params[:id])
     @task = Task.find(params[:id])
 
     respond_to do |format|
@@ -26,7 +25,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    
     @task = Task.new
 @tasks_user=Tasks_user.new
     respond_to do |format|
@@ -84,8 +82,9 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
-    @task = Task.find(params[:id])
-     @task.users = [User.find(params[:user_ids])]
+  @task = Task.find(params[:id])
+@decoration=Decoration.find(@task.decoration_id)
+     @task.users = User.find(params[:user_ids])
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
@@ -101,11 +100,14 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+ 
     @task = Task.find(params[:id])
+@decoration=Decoration.find(@task.decoration_id)
+p @decoration
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to @decoration }
       format.json { head :no_content }
     end
   end

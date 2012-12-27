@@ -17,14 +17,11 @@
 
 <p>
   <b>Expense:</b>
-<% if (@decoration.expense !="/expenses/original/missing.png") %>
- No attachment
-
- <% else %>
- has attchmnt
- <%#=  link_to "Download", @decoration.expense.url(:original, false) %>
-
- <% end %>
+<% if @decoration.expense.exists? %>
+ <%=  link_to "Download", @decoration.expense.url(:original, false) %>
+<% else %>
+No file uploaded for expense
+<% end %>
 </p>
 
 
@@ -44,7 +41,7 @@
     <td>   <%= t.name %></td>
     <td>   <% t.users.each do |user| %> <%=user.username%> <% end %></td>
      <td><%= link_to 'Edit', edit_task_path(t) %></td>
-    <td><%= link_to 'Destroy', @task, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', t, confirm: 'Are you sure?', method: :delete %></td>
      
 
 <% end %>

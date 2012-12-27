@@ -3,7 +3,7 @@ class Decoration < ActiveRecord::Base
 	validates :name,  :presence => true
 	validates :year,  :presence => true
 	attr_accessible :expense
-  has_attached_file :expense
+  has_attached_file :expense, :default_url => "assets/images/rails.png"
 has_many:tasks
 
 end

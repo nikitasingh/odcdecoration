@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
+load_and_authorize_resource
   def index
-    @users = User.all
+       @users = User.page( params[:page]).per(5).order("id asc")
+
 
     respond_to do |format|
       format.html # index.html.erb

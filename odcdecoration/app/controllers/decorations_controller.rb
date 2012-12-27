@@ -7,7 +7,7 @@ class DecorationsController < ApplicationController
 
     def home
 if params[:year]
-  puts "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+
   @decorations=Decoration.where(:year=> params[:year])
 
 else

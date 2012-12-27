@@ -1,13 +1,13 @@
 Odcdecoration::Application.routes.draw do
   resources :roles
-
+  resources :tasks 
   resources :taskusers
 
 devise_for :users, :path_prefix => 'my'
 resources :users
   resources :zones
 
-  resources :tasks 
+  
    
     resources :tasks_users 
      resources :taskusers 
