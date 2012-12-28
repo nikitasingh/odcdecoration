@@ -45,15 +45,6 @@ class TasksController < ApplicationController
   
   @decoration = Decoration.find(params[:decoration_id])
  
- 
-
-  #@tasks_user=Tasks_user.new(:user_id=>3,:task_id=>3)
-#@tasks_user.save
-#p 'newwwwwwwwwwwwwwwwww task params'
-#p params[:name]
-#p params[:task][:name]
-#p params[:task_id]
-
  respond_to do |format|
       if (params[:user_ids]!=nil) && (params[:task][:name]!="")
  #       p '!!!!!!!!!!!!!!!!! user id !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
@@ -88,7 +79,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @decoration, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

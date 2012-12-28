@@ -46,12 +46,6 @@ if (params[:year]=="")
   # GET /decorations/1.json
   def show
     @decoration = Decoration.find(params[:id])
-#@tasks=@decoration.tasks
-#p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-#p @tasks
-#p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-
-
  @tasks=@decoration.tasks.page(params[:page]).per(3)
     respond_to do |format|
       format.html # show.html.erb
